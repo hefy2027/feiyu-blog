@@ -74,19 +74,17 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 		homeText: {
 			// 是否启用主页横幅文字
 			enable: true,
-			// 主页横幅主标题
-			title: "Lovely firefly!",
+		// 主页横幅主标题
+		title: "非与",
 			// 主页横幅主标题字体大小
 			titleSize: "4.5rem",
-			// 主页横幅副标题
-			subtitle: [
-				"In Reddened Chrysalis, I Once Rest",
-				"From Shattered Sky, I Free Fall",
-				"Amidst Silenced Stars, I Deep Sleep",
-				"Upon Lighted Fyrefly, I Soon Gaze",
-				"From Undreamt Night, I Thence Shine",
-				"In Finalized Morrow, I Full Bloom",
-			],
+		// 主页横幅副标题
+		subtitle: [
+			"子非鱼，安知鱼之乐",
+		"一尾随性游弋的鱼",
+		"兴之所至，便动手折腾",
+		"日子很长，慢慢写就好",
+		],
 			// 主页横幅副标题字体大小
 			subtitleSize: "1.5rem",
 			typewriter: {
