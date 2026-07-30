@@ -20,9 +20,7 @@ slug: cf-manager-intro
 - 查个配额要来回切号，部署个 Worker 要手动点到手酸
 - 想用 Workers AI 玩点东西，API 调了半天还不知道烧了多少 token
 
-**我忍了两年，最后给自己写了一个面板。**
-
-就是下面这个——[CF Manager](https://cf-manager.surge.sh/)，一个管完所有 Cloudflare 账户的开源面板。
+就是下面这个——[CF Manager](https://cf-manager.surge.sh/)。**一个面板，管完你的 Cloudflare。** 12+ 功能模块，2 种部署方式，2 套后端架构，100% 开源。
 
 ![落地页](./images/cf-manager-landing.png)
 
@@ -40,103 +38,105 @@ slug: cf-manager-intro
 
 ---
 
-## 为什么值得试试？
+## 一个平台，三大核心能力
 
-**1. 不用再切号了**
+### 多账户统一管理
 
-API Token / Global API Key 双认证，凭证 AES 加密。多个账户添加进来之后，左上角随便切，操作日志跟着账户走。
+API Token / Global API Key **双认证**，凭证 **AES 加密存储**。多账户一键切换、统一调度，操作审计日志跟着账户走，再也不用每次查配额都重新登录。
 
-**2. 跨账户批量部署**
+### 全栈资源运维
 
-同一个 Worker 要部署到 10 个账户？官方后台你得一个个来。CF Manager 选中目标账户／脚本 → 传一次代码 → 全量部署，结果一目了然。
+可视化管理 DNS、Workers / Pages、KV / D1 / R2 存储、Tunnel 隧道与规则引擎。跨账户批量部署，**结构化表单替代手写 JSON**，不用背命令行。
 
-**3. AI 推理终于不瞎了**
+![Workers 管理](./images/workers.png)
 
-Workers AI 全模型对话，每次请求的 token 消耗、缓存命中、费用估算实时显示在右侧——不用再盯着 API 返回值自己算。
+### OpenAI 兼容 AI 网关
+
+Workers AI **全模型推理**，Prompt Caching **感知计费**，多账户**配额自动调度**。并暴露 `/v1/chat/completions` 和 `/v1/models` 端点——你本地的 ChatBox、OpenCat、Continue 可以直接连上来，跟用 OpenAI API 一样。
 
 ![AI 推理](./images/ai-inference.png)
 
-**4. 内置 65+ 模板，点一下就部署**
+---
 
-不想从零写 Worker？模板商店挑一个——短链、图床、临时邮箱、状态监控、AI 聊天机器人……点「部署」就上线，源码也在你账户里。
+## 覆盖 Cloudflare 运维全链路
+
+从域名 DNS 到边缘计算，从对象存储到 AI 推理，**12 大模块一站式管理**：
+
+| 模块 | 能做什么 |
+|------|----------|
+| 实时仪表盘 | 各账户 Workers、AI、渲染配额实时展示，操作审计一目了然 |
+| DNS 管理 | A / AAAA / CNAME / MX / TXT 全记录，一键代理开关，批量操作 |
+| Workers / Pages | 脚本与项目 CRUD，单/跨账户批量部署，绑定、环境变量、路由、自定义域名 |
+| 隧道管理 **NEW** | Tunnel 创建/删除，Ingress 可视化编辑，一键回源向导自动配置 DNS + ingress |
+| 规则引擎 **NEW** | 8 种规则类型（回源/重写/头转换/缓存/防火墙/限速/重定向），结构化表单 + 表达式 |
+| AI 推理 | Workers AI 全模型，流式对话 + Reasoning 可视化，多账户智能调度 |
+| 浏览器渲染 | 截图 / HTML / Markdown / PDF / 链接提取，5 种模式，SSRF 防护 |
+| 存储管理 | KV 键值 CRUD、D1 SQL 查询、R2 文件上传/下载/预览 |
+| 应用商店 | 内置 65+ 模板，支持第三方源扩展，一键部署 Workers / Pages |
+| OpenAI 兼容 API | `/v1/chat/completions`、`/v1/models`，流式 + 非流式，仅限本地调试 |
+| 安全特性 | API Token AES 加密，可选登录密码，`/admin/` 路径隐藏，完整审计日志 |
+| 双后端架构 | Docker（Express + SQLite）与 Cloudflare Pages（Hono + D1），同一套逻辑按需选 |
 
 ![模板商店](./images/store.png)
 
-**5. 给开发者留了 OpenAI 兼容接口**
+---
 
-CF Manager 暴露了一个 `/v1/chat/completions` 端点。什么意思？你本地的 ChatBox、OpenCat、Continue 可以直接连上来，拿 Workers AI 当后端，跟用 OpenAI API 一样丝滑。
+## 谁在用？
 
-| 对比 | Cloudflare 官方后台 | CF Manager |
-|------|-------------------|------------|
-| 多账户 | 每个账户独立登录 | 一个面板全切 |
-| 批量部署 | 逐个操作 | 跨账户批量 |
-| AI 费用 | 自己算 | 实时显示 |
-| 模板市场 | 没有 | 65+ 一键部署 |
-| OpenAI 兼容 | 没有 | 内置 /v1 接口 |
+**个人开发者** — 把多个 Cloudflare 账户汇总到一个面板，本地调试 AI 推理与浏览器渲染，OpenAI 兼容接口接入自己的工具链。
+
+**团队运维** — 统一管理团队域名、Workers、DNS 与存储，跨账户批量部署，配额与用量集中可视。
+
+**回源与组网** — 一键回源向导自动打通 Tunnel + DNS CNAME，可视化编辑 Ingress，零命令行。
+
+**自托管私有部署** — Docker Compose 一键自建，HTTP/SOCKS5 代理支持，凭证加密不外泄，数据完全自控。
 
 ---
 
 ## 5 分钟，零成本部署
 
-最快的方式：**Fork 仓库 → 配置 4 个 Secrets → 点一下运行**，全程浏览器操作，不装任何工具。
+最快的方式：**Fork 仓库 → 配置 4 个 Secrets → 点一下运行**，全程浏览器操作。
 
-**第一步**：打开 [GitHub 仓库](https://github.com/hefy2027/cf-manager)，点右上角 **Fork**。
-
-**第二步**：进入你的 Fork → **Settings** → **Environments** → **New environment**，创建环境名 `production`，添加 4 个 Secrets：
+| 步骤 | 操作 |
+|------|------|
+| 1 | 打开 [GitHub 仓库](https://github.com/hefy2027/cf-manager)，点右上角 **Fork** |
+| 2 | 你的 Fork → **Settings** → **Environments** → 创建 `production`，添加 4 个 Secrets |
+| 3 | **Actions** → **Deploy to Cloudflare Pages (Secrets)** → Run，环境名填 `production` |
+| 4 | 部署完访问 `https://cfmgr.pages.dev/admin/`，输入 `API_SECRET`，搞定 |
 
 | 变量 | 怎么填 |
 |------|--------|
-| `CF_API_KEY` | 你的 Cloudflare Global API Key |
+| `CF_API_KEY` | Cloudflare Global API Key |
 | `CF_EMAIL` | Cloudflare 账户邮箱 |
-| `ENCRYPTION_KEY` | 随便填一串至少 16 位的随机字符 |
+| `ENCRYPTION_KEY` | 至少 16 位随机字符串 |
 | `API_SECRET` | 登录面板的密码 |
 
-> 推荐用 API Token 而非 Global API Key，具体勾选哪些权限见[附录](#附录api-token-权限配置对照)。
+> 推荐用 API Token 替代 Global API Key，具体权限见[附录](#附录api-token-权限配置对照)。
 
-**第三步**：**Actions** → **Deploy to Cloudflare Pages (Secrets)** → **Run workflow**，环境名填 `production`。
+也可以用 Docker 自托管：
 
-等几分钟，访问 `https://cfmgr.pages.dev/admin/`，输入 `API_SECRET`，搞定。
-
----
-
-## 进去之后做什么？
-
-### 1. 添加账户
-
-「账户管理」→「添加账户」，输入 API Token 和邮箱，**凭证会 AES 加密存储**，不是你裸奔的 Key。
-
-### 2. 看仪表盘
-
-实时看到每个账户的 Workers 配额、AI 用量、渲染额度——再也不用点进每个后台手动查。
-
-### 3. 管 Workers
-
-![Workers 管理](./images/workers.png)
-
-部署、设置 Secrets、绑域名、看日志，跨账户批量操作都在这里。
+```bash
+git clone https://github.com/hefy2027/cf-manager.git
+cd cf-manager && cp .env.example .env
+chmod +x deploy.sh && ./deploy.sh
+# → http://localhost:3000/admin/
+```
 
 ---
 
 ## 技术栈
 
-前端 Vue 3 + Naive UI，后端分两套：Docker 版走 Express 5 + SQLite，Cloudflare Pages 版走 Hono + D1。同一套业务逻辑，两种部署方式按需选。
-
-不想用 Cloudflare Pages 也可以 Docker 自托管：
-
-```bash
-git clone https://github.com/hefy2027/cf-manager.git
-cd cf-manager
-cp .env.example .env  # 填 ENCRYPTION_KEY
-chmod +x deploy.sh && ./deploy.sh
-```
+| 前端 | 后端（Docker） | 后端（Cloudflare Pages） | 部署 |
+|------|---------------|------------------------|------|
+| Vue 3 + Naive UI + Pinia | Express 5 + SQLite | Hono + D1 | Docker Compose / Cloudflare Pages |
 
 ---
 
 ## 最后说两句
 
-CF Manager 不是什么大厂产品，就是一个人被 Cloudflare 多个账户折磨了两年以后写出来的工具。如果你也刚好需要，Fork 一个试试，几分钟的事。
+如果你也被多账户切换折磨过，Fork 一个试试，几分钟的事。
 
-项目 MIT 开源，目前 v1.4.1。
+项目 MIT 开源，当前 v1.4.1。
 
 - GitHub 仓库（主）：https://github.com/hefy2027/cf-manager
 - Gitee 镜像：https://gitee.com/hefy27/cf-manager
@@ -168,4 +168,4 @@ CF Manager 不是什么大厂产品，就是一个人被 Cloudflare 多个账户
 
 **资源范围**：Account Resources → `All accounts`，Zone Resources → `All zones`。
 
-**创建入口**：[Cloudflare API Tokens](https://dash.cloudflare.com/profile/api-tokens) → 创建令牌 → 自定义。TTL 建议 `Forever`，生成后**立即复制保存**，Token 只显示一次。
+**创建入口**：[Cloudflare API Tokens](https://dash.cloudflare.com/profile/api-tokens) → 创建令牌 → 自定义。TTL 建议 `Forever`，生成后**立即复制保存**。
