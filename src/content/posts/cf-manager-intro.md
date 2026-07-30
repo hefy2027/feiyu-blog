@@ -2,7 +2,7 @@
 title: CF Manager — 一站式 Cloudflare 多账户管理面板
 published: 2026-07-30
 description: 介绍 CF Manager 是什么、能做什么，以及如何最快 5 分钟完成部署。
-image: "/assets/images/cf-manager-cover.png"
+image: "./images/cf-manager-cover.png"
 tags:
   - Cloudflare
   - CF Manager
@@ -22,7 +22,7 @@ CF Manager 就是为这个痛点而生：**把分散在多个账户、多种产�
 
 简单说，它是一个自托管的 Cloudflare 多账户运维面板。基于 Cloudflare 官方 API 构建，部署到你自己的服务器或 Cloudflare Pages 上，数据完全私有。
 
-![仪表盘](/assets/images/cf-manager/dashboard.png)
+![仪表盘](./images/dashboard.png)
 
 > 在线演示：https://mgrcf.pages.dev/admin/（密码：`cfmgrbest`）
 
@@ -145,19 +145,19 @@ Docker 版本后端使用 **Express 5 + SQLite**，前端使用 **Nginx 反向�
 - **规则引擎** → 给域名配各种规则
 - **应用商店** → 浏览模板，一键部署到你的 Worker / Pages
 
-![Workers 管理](/assets/images/cf-manager/workers.png)
+![Workers 管理](./images/workers.png)
 
 ### 3. 试用 AI 推理
 
 进入 AI 推理模块，选择一个模型（比如 `@cf/meta/llama-4-scout`），输入提示词就能直接在面板里对话。右侧会显示每次请求的 token 消耗和费用估算。
 
-![AI 推理](/assets/images/cf-manager/ai-inference.png)
+![AI 推理](./images/ai-inference.png)
 
 ### 4. 浏览模板商店
 
 模板商店（应用商店）汇集了 65+ 个开箱即用的 Cloudflare Worker / Pages 模板，按类型筛选，找到合适的直接一键部署到你的账户。
 
-![模板商店](/assets/images/cf-manager/store.png)
+![模板商店](./images/store.png)
 
 ### 5. 尝试 OpenAI 兼容 API
 
