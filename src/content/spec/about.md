@@ -9,7 +9,7 @@
 这个网站使用 **Astro** 框架构建，采用 [Firefly](https://github.com/CuteLeaf/Firefly) 模板（基于 [Fuwari](https://github.com/saicaca/fuwari) 二次开发）。在这里，我记录技术折腾、开发心得，以及一些随手写下的随想。
 ::github{repo="CuteLeaf/Firefly"}
 
-**🏠 我的博客：[https://hefy2027.github.io](https://hefy2027.github.io/)**
+**🏠 我的博客：[https://blog.hefy.site](https://blog.hefy.site)**
 **⭐ 我的 GitHub：[https://github.com/hefy2027](https://github.com/hefy2027)**
 
 ## 💡 我折腾的东西
