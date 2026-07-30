@@ -28,6 +28,12 @@ export const profileConfig: ProfileConfig = {
 			showName: false,
 		},
 		{
+			name: "Gitee",
+			icon: "simple-icons:gitee",
+			url: "https://gitee.com/hefy27",
+			showName: false,
+		},
+		{
 			name: "Email",
 			icon: "fa7-solid:envelope",
 			url: "mailto:hefeiyu2027@gmail.com",

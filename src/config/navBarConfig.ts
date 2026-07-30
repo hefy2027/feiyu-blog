@@ -95,6 +95,12 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 			icon: "fa7-brands:github",
 			},
 			{
+				name: "Gitee",
+				url: "https://gitee.com/hefy27",
+				external: true,
+				icon: "simple-icons:gitee",
+			},
+			{
 				name: "CF-Manager",
 				url: "https://cf-manager.surge.sh/",
 				external: true,
