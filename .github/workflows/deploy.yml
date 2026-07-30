@@ -38,6 +38,12 @@ jobs:
         run: pnpm install --no-frozen-lockfile
       
       - name: Build site
+        env:
+          # GitHub Pages 部署在 https://hefy2027.github.io/feiyu-blog/ 子路径下，
+          # 注入 BASE_PATH 与 SITE_URL 让 Astro 把资源路径和 sitemap URL 指向该子路径；
+          # Cloudflare 部署不读取这两个变量，保持 base: "/" 与 site: siteConfig.site_url。
+          BASE_PATH: /feiyu-blog/
+          SITE_URL: https://hefy2027.github.io/feiyu-blog
         run: pnpm run build
 
       - name: Create .nojekyll file

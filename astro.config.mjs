@@ -63,11 +63,17 @@ const adapter = process.env.CF_WORKERS
 		})
 	: undefined;
 
+// 部署目标差异化配置：
+// - GitHub Pages: 通过 BASE_PATH / SITE_URL 注入仓库子路径与 Pages 域名
+// - Cloudflare Pages / Workers: 不注入则保持原行为（base: "/", site: siteConfig.site_url）
+const deployBase = process.env.BASE_PATH?.trim() || "/";
+const deploySite = process.env.SITE_URL?.trim() || siteConfig.site_url;
+
 // https://astro.build/config
 export default defineConfig({
-	site: siteConfig.site_url,
+	site: deploySite,
 
-	base: "/",
+	base: deployBase,
 	trailingSlash: "always",
 
 	// 字体配置 - 只加载实际使用的字体，跳过未引用的以加快构建
