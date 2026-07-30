@@ -1,6 +1,6 @@
 ---
 title: 一个面板，管完你所有 Cloudflare 账户
-published: 2026-07-30
+published: 2026-07-30 15:02:59
 description: 告别多账户反复切换，用 CF Manager 统一管理 DNS、Workers、存储和 AI 推理——5 分钟零成本部署。
 image: "./images/cf-manager-cover.png"
 tags:
