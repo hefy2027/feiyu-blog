@@ -2,7 +2,7 @@
 title: CF Manager — 一站式 Cloudflare 多账户管理面板
 published: 2026-07-30
 description: 介绍 CF Manager 是什么、能做什么，以及如何最快 5 分钟完成部署。
-image: "api"
+image: "/assets/images/cf-manager-cover.png"
 tags:
   - Cloudflare
   - CF Manager
