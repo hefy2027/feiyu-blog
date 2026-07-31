@@ -9,7 +9,7 @@ tags:
   - 建站
   - 避坑
 category: 技术
-draft: flase
+draft: false
 lang: 'zh-cn'
 slug: free-domain-risk-notes
 ---
