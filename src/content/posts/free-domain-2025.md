@@ -1,6 +1,6 @@
 ---
 title: 免费域名还能用吗？测了七八个，就剩这 4 个了
-published: 2026-07-30
+published: 2026-07-31 15:55:30
 description: Freenom 凉了之后，我试了七八个免费域名平台，跑路的跑路、改规则的改规则。现在还能注册、我稳定在用的就这 4 个：DnShe、DigitalPlat、Gname、L53。
 image: "./images/freedom-domain.jpeg"
 tags:
