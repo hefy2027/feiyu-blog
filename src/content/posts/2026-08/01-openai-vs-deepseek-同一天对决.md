@@ -8,7 +8,7 @@ tags:
   - OpenAI
   - DeepSeek
   - 大模型
-category: 技术
+category: AI
 draft: false
 lang: 'zh-cn'
 slug: openai-vs-deepseek-same-day

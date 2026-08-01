@@ -8,7 +8,7 @@ tags:
   - Cloudflare
   - 建站
   - 避坑
-category: 技术
+category: 域名
 draft: false
 lang: 'zh-cn'
 slug: free-domain-risk-notes

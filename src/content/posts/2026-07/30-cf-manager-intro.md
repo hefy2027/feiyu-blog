@@ -8,7 +8,7 @@ tags:
   - CF Manager
   - 工具
   - 开源
-category: 技术
+category: Cloudflare
 draft: false
 lang: 'zh-cn'
 slug: cf-manager-intro

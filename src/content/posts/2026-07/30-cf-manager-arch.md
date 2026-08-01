@@ -8,7 +8,7 @@ tags:
   - Workers
   - 运维
   - 开源
-category: 技术
+category: Cloudflare
 draft: false
 lang: 'zh-cn'
 slug: cf-manager-arch

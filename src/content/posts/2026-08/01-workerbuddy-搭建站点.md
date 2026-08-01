@@ -8,7 +8,7 @@ tags:
   - WorkerBuddy
   - Workers
   - 站点部署
-category: '技术'
+category: 建站
 draft: true
 lang: 'zh-cn'
 slug: workerbuddy-build-site

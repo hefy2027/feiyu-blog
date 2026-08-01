@@ -8,7 +8,7 @@ tags:
   - Cloudflare
   - 建站
   - 实测
-category: 技术
+category: 域名
 draft: false
 lang: 'zh-cn'
 slug: free-domain-2025
