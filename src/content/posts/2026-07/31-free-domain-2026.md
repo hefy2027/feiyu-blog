@@ -2,7 +2,7 @@
 title: 免费域名还能用吗？测了七八个，就剩这 4 个了
 published: 2026-07-31 15:55:30
 description: Freenom 凉了之后，我试了七八个免费域名平台，跑路的跑路、改规则的改规则。现在还能注册、我稳定在用的就这 4 个：DnShe、DigitalPlat、Gname、L53。
-image: "./images/freedom-domain.jpeg"
+image: "https://i.ibb.co/Q7916k6h/freedom-domain.jpg"
 tags:
   - 免费域名
   - Cloudflare
@@ -26,11 +26,11 @@ Meta 一告、ICANN 一封，曾经人手一个的免费域名说没就没。这
 
 后缀给得很大方，控制台里六七个后缀随便挑，`de5.net`、`cc.cd`、`us.ci` 这些都在，新后缀也时不时会上。大部分后缀支持托管到 Cloudflare，生效速度也是真快——刚绑定完基本就通了，不用像某些平台那样干等半天。
 
-![DnShe-DNS 解析](./images/dnshe-dns.png)
+![DnShe-DNS 解析](https://i.ibb.co/XxKwQZgc/dnshe-dns.png)
 
 先说额度。现在不要邀请码了，注册完是基础名额，想加额度就去控制台的"奖励中心"做任务：Star 它家 GitHub 仓库 +2、加官方交流群 +1、绑定 TOTP 两步验证 +1、完善个人资料 +1、分享到 X +1。社群那个任务领完还弹了句"已奖励 1 个注册额度"，亲测秒到账。注册入口：https://my.dnshe.com/go.php?code=paZCgG53Jk
 
-![DnShe-奖励中心](./images/dnshe-rewards.png)
+![DnShe-奖励中心](https://i.ibb.co/Y7PpL8c4/dnshe-rewards.png)
 
 续期这块，2026 年 1 月 1 日起新注册的域名改成按年算了，到期前 180 天内会开免费续期通道，面板点一下就行，怕忘的话也能走 API 一键续。
 
@@ -40,7 +40,7 @@ Meta 一告、ICANN 一封，曾经人手一个的免费域名说没就没。这
 
 它前身是 US.KG，当年也是免费域名圈的名人。后来滥用的人太多，直接被注册局暂停解析，平台没办法，把主力换成了 DPDNS.ORG，早注册的那批 US.KG 子域名也被自动迁了过去。
 
-![DigitalPlat（US.kg）](./images/digitalplat.png)
+![DigitalPlat（US.kg）](https://i.ibb.co/QF2qx7F6/digitalplat.png)
 
 你可能想不到，这一刀切下去反而是好事。以前 US.KG 三天两头炸，换成 DPDNS.ORG 之后，至少我没再听说大范围抽风的事。
 
@@ -58,7 +58,7 @@ Gname 本身是个正经域名注册商，免费域名是它搞的拉新活动�
 
 最大亮点是注册门槛：邮箱验证 + MFA 就行，我用的是谷歌身份验证器（Authenticator），**全程不用绑手机号**。对手机号过敏的朋友（比如我）会很舒服。
 
-![EU.CC](./images/eu-cc.png)
+![EU.CC](https://i.ibb.co/spn00sMg/eu-cc.png)
 
 活动后缀是 `eu.cc`。玩法是去活动页点"免费注册"，系统发全额抵扣券到账户，下单时用券直接 0 元结账。普通用户限 3 个，认证代理商最多能到 20 个。注意券领了之后 30 天内要用掉，过期不退；两字符、三字符这类短位和品牌词属于溢价名，不能用券。
 
@@ -72,11 +72,11 @@ Gname 本身是个正经域名注册商，免费域名是它搞的拉新活动�
 
 它的玩法很直接：新用户注册下单时填优惠码 `newuser`，一个域名首年直接免费。没有邀请码那套人情世故，也不用给 GitHub 点星，注册完就能用。
 
-![L53-控制台](./images/l53.png)
+![L53-控制台](https://i.ibb.co/V0NkhZxs/l53.png)
 
 下单时把 `newuser` 填进优惠码那一栏，价格直接归零：
 
-![L53-下单优惠码生效](./images/l53-newuser.png)
+![L53-下单优惠码生效](https://i.ibb.co/RkJ8kcMs/l53-newuser.png)
 
 要说缺点，就是可选后缀少、名字也不如别家好听，`filegear-sg.me` 这种长度念着都费劲。而且平台体量小，能撑多久是个未知数——不过免费域名本来就这德性，能用一天是一天。
 

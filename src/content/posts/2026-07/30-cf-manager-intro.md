@@ -2,7 +2,7 @@
 title: 一个面板，管完你所有 Cloudflare 账户
 published: 2026-07-30 15:02:59
 description: 告别多账户反复切换，用 CF Manager 统一管理 DNS、Workers、存储和 AI 推理——5 分钟零成本部署。
-image: "./images/cf-manager-cover.png"
+image: "https://i.ibb.co/rKWW3Z3B/cf-manager-cover.png"
 tags:
   - Cloudflare
   - CF Manager
@@ -22,7 +22,7 @@ slug: cf-manager-intro
 
 就是下面这个——[CF Manager](https://cf-manager.surge.sh/)。**一个面板，管完你的 Cloudflare。** 12+ 功能模块，2 种部署方式，2 套后端架构，100% 开源。
 
-![落地页](./images/cf-manager-landing.png)
+![落地页](https://i.ibb.co/Y4mq01GN/cf-manager-landing.png)
 
 > 在线演示：https://mgrcf.pages.dev/admin/（密码 `cfmgrbest`）｜落地页：[cf-manager.surge.sh](https://cf-manager.surge.sh/)
 
@@ -32,7 +32,7 @@ slug: cf-manager-intro
 
 简单说：**把 Cloudflare 官方后台分散在多个页面、多个账户的功能，全收到一个面板里。**
 
-![仪表盘](./images/dashboard.png)
+![仪表盘](https://i.ibb.co/jk4jv5YQ/dashboard.png)
 
 左边菜单就是你能管的所有东西——Workers、DNS、存储、AI 推理、隧道、规则引擎……不管你有几个 Cloudflare 账户，登录后一键切换，数据在你自己的服务器上加密存储。
 
@@ -48,13 +48,13 @@ API Token / Global API Key **双认证**，凭证 **AES 加密存储**。多账�
 
 可视化管理 DNS、Workers / Pages、KV / D1 / R2 存储、Tunnel 隧道与规则引擎。跨账户批量部署，**结构化表单替代手写 JSON**，不用背命令行。
 
-![Workers 管理](./images/workers.png)
+![Workers 管理](https://i.ibb.co/LD5wTdhw/workers.png)
 
 ### OpenAI 兼容 AI 网关
 
 Workers AI **全模型推理**，Prompt Caching **感知计费**，多账户**配额自动调度**。并暴露 `/v1/chat/completions` 和 `/v1/models` 端点——你本地的 ChatBox、OpenCat、Continue 可以直接连上来，跟用 OpenAI API 一样。
 
-![AI 推理](./images/ai-inference.png)
+![AI 推理](https://i.ibb.co/5xM1CGDg/ai-inference.png)
 
 ---
 
@@ -77,7 +77,7 @@ Workers AI **全模型推理**，Prompt Caching **感知计费**，多账户**�
 | 安全特性 | API Token AES 加密，可选登录密码，`/admin/` 路径隐藏，完整审计日志 |
 | 双后端架构 | Docker（Express + SQLite）与 Cloudflare Pages（Hono + D1），同一套逻辑按需选 |
 
-![模板商店](./images/store.png)
+![模板商店](https://i.ibb.co/6Rfsdtxt/store.png)
 
 ---
 

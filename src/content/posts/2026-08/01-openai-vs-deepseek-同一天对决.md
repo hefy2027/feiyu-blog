@@ -30,7 +30,7 @@ slug: openai-vs-deepseek-same-day
 
 Luna 输入降到 $0.20——跟白送差不多了。OpenAI 还专门贴了一张 Artificial Analysis 的图，宣称降价后性价比反超 DeepSeek V4 Pro。
 
-![Artificial Analysis 性价比对比：GPT-5.6 Luna vs DeepSeek V4 Pro](./images/ai-index-comparison.png)
+![Artificial Analysis 性价比对比：GPT-5.6 Luna vs DeepSeek V4 Pro](https://i.ibb.co/390qR5j9/ai-index-comparison.png)
 
 但价格降得这么狠，不是因为 OpenAI 良心发现。前一天他们披露了一个细节：**GPT-5.6 Sol 已经在优化自己的底层基础设施了**——重写 GPU 内核（成本 -20%）、迭代推测解码模型（吞吐 +15%）、自动调优负载均衡和 KV Cache。省下来的钱变成了降价。
 
@@ -56,7 +56,7 @@ DeepSWE 涨 7.5 倍，从玩具变工具。Terminal-Bench 82.7，逼近 Opus 的
 
 价格：输入 ¥1/M，输出 ¥2/M，缓存 ¥0.02/M。1M 上下文，MIT 开源。
 
-![DeepSeek V4 Flash vs GPT-5.6 Luna 多维度对比](./images/orca-router-comparison.png)
+![DeepSeek V4 Flash vs GPT-5.6 Luna 多维度对比](https://i.ibb.co/ZRDjwksX/orca-router-comparison.png)
 
 ---
 

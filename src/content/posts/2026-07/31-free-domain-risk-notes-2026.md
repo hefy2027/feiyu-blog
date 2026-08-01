@@ -2,7 +2,7 @@
 title: Freenom 死后，我整理了一份免费域名避坑笔记
 published: 2026-07-31 18:40:00
 description: 免费域名最大的问题不是贵，是不确定性。这篇文章不复述平台优点，只记录我实测中遇到的政策变动、续期陷阱和访问风险，以及目前仍在稳定运行的 4 个样本的边界条件。
-image: "./images/freedom-domain.jpeg"
+image: "https://i.ibb.co/Q7916k6h/freedom-domain.jpg"
 tags:
   - 免费域名
   - Cloudflare
@@ -35,7 +35,7 @@ slug: free-domain-risk-notes
 
 到期前 180 天内开放免费续期通道，面板手动点击或 API 调用均可。关键风险在于：**通道只在到期前 180 天内开放，过期不候**。我目前用日历 + API 定时任务双保险，防止遗忘。
 
-![DnShe DNS 解析配置界面](./images/dnshe-dns.png)
+![DnShe DNS 解析配置界面](https://i.ibb.co/XxKwQZgc/dnshe-dns.png)
 
 **适用边界：**
 
@@ -48,7 +48,7 @@ slug: free-domain-risk-notes
 - 前身 US.KG 因滥用用户过多，被 .KG 注册局**整批暂停解析**。平台被迫将主力后缀更换为 DPDNS.ORG，早期用户被强制迁移。这是典型的"平台兜底能力"测试——它活下来了，但用户经历了无预警迁移。
 - 当前免费后缀仅剩 `dpdns.org` 和 `qd.je`；`qzz.io` 已转为一次性付费 3 美元（续期免费）；`us.kg` 和 `xx.kg` 因注册局零容忍政策暂停注册。
 
-![DigitalPlat 控制台（已迁移至 DPDNS.ORG）](./images/digitalplat.png)
+![DigitalPlat 控制台（已迁移至 DPDNS.ORG）](https://i.ibb.co/QF2qx7F6/digitalplat.png)
 
 **续期陷阱：**
 
@@ -71,7 +71,7 @@ slug: free-domain-risk-notes
 - 免费券领取后 30 天内必须使用，过期不退。
 - 两字符、三字符等短位域名和品牌词属于溢价名，不在免费范围内。
 
-![Gname EU.CC 活动页面（注意"免费续费"入口）](./images/eu-cc.png)
+![Gname EU.CC 活动页面（注意"免费续费"入口）](https://i.ibb.co/spn00sMg/eu-cc.png)
 
 **适用边界：**
 
@@ -87,7 +87,7 @@ slug: free-domain-risk-notes
 
 新用户首年免费（下单时指定优惠码），次年需正常续费。这意味着**它的免费期是 4 个样本中最短的**，本质上是一个首年试用策略。
 
-![L53 域名管理控制台](./images/l53.png)
+![L53 域名管理控制台](https://i.ibb.co/V0NkhZxs/l53.png)
 
 **适用边界：**
 

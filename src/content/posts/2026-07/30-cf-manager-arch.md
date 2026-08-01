@@ -2,7 +2,7 @@
 title: Cloudflare 多账户管理：从痛点分析到开源方案实践
 published: 2026-07-30 15:03:27
 description: 分享 Cloudflare 多账户统一管理的技术方案，涵盖 DNS、Workers、存储和 AI 推理的集中运维实践。
-image: "./images/cf-manager-cover.png"
+image: "https://i.ibb.co/rKWW3Z3B/cf-manager-cover.png"
 tags:
   - Cloudflare
   - Workers
@@ -24,7 +24,7 @@ slug: cf-manager-arch
 
 ## 整体架构
 
-![仪表盘](./images/dashboard.png)
+![仪表盘](https://i.ibb.co/jk4jv5YQ/dashboard.png)
 
 核心思路很简单：**通过 Cloudflare API 统一对接所有账户的资源，前端用一个 SPA 面板集中呈现和操作。**
 
@@ -59,7 +59,7 @@ Cloudflare API 支持两种认证方式：**API Token**（细粒度权限）和 
 
 实现上，每个账户的 API Token 独立加密存储，用户登录面板后可以添加多个账户。切换账户时，前端只切换当前会话的 `accountId` 上下文，后端根据该上下文选择对应的加密凭证解密后调用 Cloudflare API。操作审计日志也按账户维度记录，方便追溯。
 
-![Workers 管理](./images/workers.png)
+![Workers 管理](https://i.ibb.co/LD5wTdhw/workers.png)
 
 ### Workers / Pages 批量部署
 
@@ -78,7 +78,7 @@ Workers AI 提供了不错的免费推理额度，但官方没有提供用量统
 - **OpenAI 兼容层**：暴露 `/v1/chat/completions` 和 `/v1/models` 两个端点，响应格式完全兼容 OpenAI API。这样本地的 ChatBox、OpenCat、Continue 等工具可以直接连上来，配置 `base_url` 为本机地址即可。
 - **用量监控**：汇总展示所有账户的 Workers AI 日配额消耗情况，方便了解各账户的推理用量。
 
-![AI 推理](./images/ai-inference.png)
+![AI 推理](https://i.ibb.co/5xM1CGDg/ai-inference.png)
 
 ### 规则引擎
 
@@ -111,7 +111,7 @@ Cloudflare Tunnel 的配置链路比较长：创建 Tunnel → 配置 Ingress �
 | OpenAI 兼容 API | `/v1/chat/completions`、`/v1/models`，流式 + 非流式 |
 | 安全 | API Token AES-256-CBC 加密，可选登录密码，`/admin/` 路径隐藏，审计日志 |
 
-![模板商店](./images/store.png)
+![模板商店](https://i.ibb.co/6Rfsdtxt/store.png)
 
 ---
 
