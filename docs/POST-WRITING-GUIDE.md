@@ -39,7 +39,7 @@ category: 文章示例             # 分类
 image: ./images/cover.avif     # 封面图：相对路径 / 以 / 开头的 public 路径 / http(s):// 网络图 / 字符串 api（自动取首图）
 password: "123456"             # 设置后文章 AES-256-GCM 加密，需输入密码查看
 passwordHint: "密码是123456"   # 加密文章的提示语
-author: 非与                   # 作者（可选）
+author: AI非与                   # 作者（可选）
 sourceLink: "https://..."      # 转载来源链接（可选）
 licenseName: "CC BY 4.0"       # 许可名称（可选）
 licenseUrl: "https://..."      # 许可链接（可选）

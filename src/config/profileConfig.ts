@@ -9,7 +9,7 @@ export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/avatar.jpg",
 
 	// 名字
-	name: "非与",
+	name: "AI非与",
 
 	// 个人签名
 	bio: "子非鱼，安知鱼之乐。一尾随性游弋的鱼，什么都想碰一碰，什么都想弄明白。",

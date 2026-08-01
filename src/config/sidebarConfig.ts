@@ -212,7 +212,7 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			// 组件类型：广告栏组件 2
 			type: "advertisement",
 			// 是否启用该组件
-			enable: false,
+			enable: true,
 			// 组件位置
 			position: "sticky",
 			// 是否在文章详情页显示
@@ -220,14 +220,13 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			// 组件专属配置（广告内容直接在此配置）
 			specificConfig: {
 				ad: {
-					title: "支持博主",
-					content:
-						"如果您觉得本站内容对您有帮助，欢迎支持我们的创作！您的支持是我们持续更新的动力。",
-					link: {
-						text: "支持一下",
-						url: "about/",
-						external: false,
+					title: "关注我的公众号",
+					image: {
+						src: "https://i.ibb.co/mFq91Rzq/ai-feyu-wechat-qr.jpg",
+						alt: "AI非与的微信公众号",
 					},
+					content:
+						"扫码关注微信公众号，获取最新文章推送与更多精彩内容。",
 					closable: false,
 					displayCount: -1,
 				},

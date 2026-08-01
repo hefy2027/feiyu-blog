@@ -1,6 +1,6 @@
 # 关于我 / About Me
 
-你好，我是 **非与**。
+你好，我是 **AI非与**。
 
 名字取自《庄子·秋水》里那句「子非鱼，安知鱼之乐」。我不是你眼中的鱼，也不必是——我只在自己的江河里自在游弋，不问潮水要去往哪个方向。
 
@@ -20,6 +20,11 @@
 
 ::github{repo="hefy2027/cf-store"}
 
+## 📱 关注我的微信公众号
+
+<div style="text-align: center; margin-top: 16px;">
+  <img src="https://i.ibb.co/gZFDN0QX/ai-feyu-wechat-qr-standard.jpg" alt="微信公众号" width="220" style="border-radius: 8px;" />
+</div>
 
 ---
 

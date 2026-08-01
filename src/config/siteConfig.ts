@@ -6,21 +6,21 @@ const SITE_LANG = "zh_CN";
 
 export const siteConfig: SiteConfig = {
 	// 站点标题
-	title: "非与",
+	title: "AI非与",
 
 	// 站点副标题
-	subtitle: "非与的博客",
+	subtitle: "AI非与的博客",
 
 	// 站点 URL
 	site_url: "https://blog.hefy.site",
 
 	// 站点描述
 	description:
-		"非与的个人博客，记录技术与生活。",
+		"AI非与的个人博客，记录技术与生活。",
 
 	// 站点关键词
 	keywords: [
-		"非与",
+		"AI非与",
 		"博客",
 		"技术博客",
 		"前端",
@@ -79,7 +79,7 @@ export const siteConfig: SiteConfig = {
 			alt: "🍀",
 		},
 		// 导航栏标题
-		title: "非与",
+		title: "AI非与",
 		// 全宽导航栏，导航栏是否占满屏幕宽度
 		widthFull: false,
 		// 导航菜单对齐方式，left：左对齐，center：居中
