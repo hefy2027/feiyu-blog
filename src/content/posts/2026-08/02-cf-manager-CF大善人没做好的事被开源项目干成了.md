@@ -9,7 +9,7 @@ tags:
   - 开源
   - 工具
 category: Cloudflare
-draft: true
+draft: false
 lang: 'zh-cn'
 slug: cf-manager-wechat
 ---
@@ -164,5 +164,3 @@ CF Manager 从 1.0 一路迭代到现在的 1.4.2，从最初只能管 Workers �
 项目地址和在线演示链接，关注公众号「**AI非与**」，后台回复「**cf-manager**」获取。部署文档在仓库 `docs/deploy.md` 里，跟着走就行。
 
 有啥使用上的问题或者想法，评论区见。
-
-觉得有用的话，点个「在看」，转给也在用 Cloudflare 的朋友。你们的支持是我继续写的动力。
