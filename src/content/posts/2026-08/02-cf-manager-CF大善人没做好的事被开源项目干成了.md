@@ -2,7 +2,7 @@
 title: CF大善人没做好的事，被一个开源项目干成了
 published: 2026-08-02
 description: '多账号切换、配额监控、批量部署……这些 Cloudflare 官方后台做不到的事，它全干了。而且开源、免费、一个页面管所有。'
-image: 'api'
+image: 'https://i.ibb.co/RpmsKQHx/cf-manager-panel.png'
 tags:
   - Cloudflare
   - CF Manager
