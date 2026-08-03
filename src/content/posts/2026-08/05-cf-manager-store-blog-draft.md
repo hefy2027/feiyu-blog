@@ -11,9 +11,9 @@ tags:
   - 开源
   - cfmanager
 category: Cloudflare
-draft: true
+draft: false
 lang: 'zh-cn'
-slug: self-host-text-to-image-cf-workers
+slug: cf-manager-store-template-market
 ---
 
 # cf-manager 应用商店 / 模板市场一键部署实战（系列第三篇）
