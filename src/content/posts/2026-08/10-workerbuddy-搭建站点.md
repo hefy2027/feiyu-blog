@@ -1,6 +1,6 @@
 ---
 title: 零服务器、零成本，我是怎么搭起个人站点的
-published: 2026-08-01
+published: 2026-08-10
 description: '用 WorkerBuddy 在 Cloudflare Workers 上一键部署个人站点，并绑定自定义域名，几分钟就能上线。'
 image: 'api'
 tags:
