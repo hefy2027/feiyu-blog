@@ -19,21 +19,5 @@
   "public:assets/images/ad/ad1.webp": "a1b8b68a8e918c8f93",
   "src:assets/images/logo/firefly-light.png": "000000000000000000",
   "src:assets/images/logo/firefly-dark.png": "ffffffffffffffffff",
-  "src:assets/images/avatar.jpg": "f4d048f4d046f9d751",
-  "src:content/posts/2026-08/images/orca-router-comparison.png": "cfd9e9d8dde6edf1fa",
-  "src:content/posts/2026-08/images/ai-index-comparison.png": "f6f7f7fbfbfbfbfbfa",
-  "src:content/posts/2026-07/images/workers.png": "f8f9fafbfcfcfefefe",
-  "src:content/posts/2026-07/images/store.png": "f9faf9fbfbfbf6f7f7",
-  "src:content/posts/2026-07/images/l53.png": "e7e7e8eeefeff3f3f3",
-  "src:content/posts/2026-07/images/l53-newuser.png": "eceeeff0f0f1f0f0f0",
-  "src:content/posts/2026-07/images/freedom-domain.jpeg": "58587d5b5a826f6d97",
-  "src:content/posts/2026-07/images/eu-cc.png": "6b6f946771abe9eefb",
-  "src:content/posts/2026-07/images/dnshe.png": "c1c3e8ccc5dffbfcfd",
-  "src:content/posts/2026-07/images/dnshe-rewards.png": "c9cbedd4cee8eaf2f4",
-  "src:content/posts/2026-07/images/dnshe-dns.png": "a7a9b5b0aeb58d8e8f",
-  "src:content/posts/2026-07/images/digitalplat.png": "f4f5f7f9fafbfafbfd",
-  "src:content/posts/2026-07/images/dashboard.png": "f9fafafcfcfcf7f7f7",
-  "src:content/posts/2026-07/images/cf-manager-landing.png": "2d231e393533252427",
-  "src:content/posts/2026-07/images/cf-manager-cover.png": "1b334f1a335017273f",
-  "src:content/posts/2026-07/images/ai-inference.png": "eeeeeff0f3f2f4f4f4"
+  "src:assets/images/avatar.jpg": "f4d048f4d046f9d751"
 }
