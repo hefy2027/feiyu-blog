@@ -69,7 +69,18 @@ const postsCollection: ContentCollection<PostData> = defineCollection({
 
 const specCollection: ContentCollection<Record<string, never>> =
 	defineCollection({
-		loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/spec" }),
+		loader: glob({
+			pattern: "**/*.{md,mdx}",
+			base: "./src/content/spec",
+			exclude: ["lists/**"],
+		}),
+		schema: z.object({}),
+	});
+
+// 常驻清单目录：src/content/spec/lists 下的 md 直接通过 /lists/<slug> 访问
+const listsCollection: ContentCollection<Record<string, never>> =
+	defineCollection({
+		loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/spec/lists" }),
 		schema: z.object({}),
 	});
 
@@ -84,10 +95,12 @@ const dynamicCollection: ContentCollection<DynamicData> = defineCollection({
 
 export const collections: {
 	dynamic: typeof dynamicCollection;
+	lists: typeof listsCollection;
 	posts: typeof postsCollection;
 	spec: typeof specCollection;
 } = {
 	dynamic: dynamicCollection,
+	lists: listsCollection,
 	posts: postsCollection,
 	spec: specCollection,
 };

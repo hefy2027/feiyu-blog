@@ -42,3 +42,6 @@ package/
 .codex*
 .claude
 .mimocode
+
+# generated wechat (公众号) layouts — one-off publish artifacts, not committed
+generated/wechat/

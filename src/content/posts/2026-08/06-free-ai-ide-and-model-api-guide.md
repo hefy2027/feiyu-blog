@@ -5,7 +5,7 @@ description: "公司说能用免费 AI 就用免费 AI，这篇就是把这句�
 image: "https://i.ibb.co/TDW2940L/free-ai-ide-and-model-api-guide-cover.png"
 tags: ["AI", "免费", "工具", "API"]
 category: "工具"
-draft: true
+draft: false
 lang: "zh-cn"
 pinned: false
 author: ""
@@ -199,3 +199,7 @@ Token Plan 免费公测，到商汤开放平台注册就给额度，兼容 OpenA
 3. 自己写代码调模型，就去 OpenRouter / Cloudflare Workers AI / NVIDIA NIM / 商汤 SenseNova / Agnes AI 领个免费 key。
 
 哪天某个停了，就换上面列的另一个。免费的东西，多备几个后手总没错。
+
+关注公众号「**AI非与**」，后台回复「**免费AI**」获取文中提到的全部工具与模型清单（含每个平台的免费额度细节和申请入口），省得你一个个去翻。
+
+我是 **AI非与**，一尾随性游弋的鱼。

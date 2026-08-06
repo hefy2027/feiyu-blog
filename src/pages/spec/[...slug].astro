@@ -1,0 +1,38 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import Markdown from "@components/common/Markdown.astro";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+
+export async function getStaticPaths() {
+	// about/guestbook/friends 由各自写死的页面负责（含评论区、友链等复杂逻辑），避免重复渲染；
+	// skills 等纯 markdown 走本常驻路由，放 md 即访问
+	const FIXED_SPEC_PAGES = new Set(["about", "guestbook", "friends"]);
+	const entries = (await getCollection("spec")).filter(
+		(entry) => !FIXED_SPEC_PAGES.has(entry.id) && !entry.id.startsWith("lists/"),
+	);
+	return entries.map((entry) => ({
+		params: { slug: entry.id },
+		props: { id: entry.id },
+	}));
+}
+
+const { id } = Astro.props;
+const entry = await getEntry("spec", id);
+if (!entry) {
+	throw new Error(`Spec page not found: ${id}`);
+}
+const { Content } = await render(entry);
+
+const headingMatch = entry.body?.match(/^#\s+(.+)$/m);
+const title = headingMatch ? headingMatch[1] : id;
+---
+
+<MainGridLayout title={title} description={title}>
+	<div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
+		<div class="card-base z-10 px-9 py-6 relative w-full">
+			<Markdown class="mt-2">
+				<Content />
+			</Markdown>
+		</div>
+	</div>
+</MainGridLayout>
