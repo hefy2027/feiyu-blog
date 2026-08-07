@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620">
+  <style>
+    text { font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", "Microsoft JhengHei", "SimHei", sans-serif; }
+  </style>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7c3aed"/>
+    </marker>
+  </defs>
+
+  <!-- background -->
+  <rect width="960" height="620" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="480" y="32" fill="#111827" font-size="18" font-weight="600" text-anchor="middle">CF Manager 双后端架构</text>
+
+  <!-- ===== Layer 1: Frontend ===== -->
+  <rect x="280" y="55" width="400" height="60" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="480" y="82" fill="#1e40af" font-size="15" font-weight="600" text-anchor="middle">Vue 3 前端</text>
+  <text x="480" y="100" fill="#6b7280" font-size="12" text-anchor="middle">Naive UI + Pinia + Vue Router + Vite + vue-i18n</text>
+
+  <!-- Frontend to both backends arrows -->
+  <line x1="380" y1="115" x2="280" y2="165" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <line x1="580" y1="115" x2="680" y2="165" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <text x="310" y="142" fill="#6b7280" font-size="11" text-anchor="middle">API</text>
+  <text x="650" y="142" fill="#6b7280" font-size="11" text-anchor="middle">API</text>
+
+  <!-- ===== Layer 2: Backends (left + right) ===== -->
+  <!-- Docker label -->
+  <text x="240" y="170" fill="#dc2626" font-size="12" font-weight="600" text-anchor="middle">Docker 自建</text>
+  <!-- Pages label -->
+  <text x="720" y="170" fill="#dc2626" font-size="12" font-weight="600" text-anchor="middle">Cloudflare Pages</text>
+
+  <!-- Left: Express Backend -->
+  <rect x="80" y="180" width="320" height="145" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
+  <rect x="80" y="180" width="320" height="32" rx="8" fill="#fef2f2"/>
+  <rect x="80" y="200" width="320" height="12" fill="#fef2f2"/>
+  <text x="240" y="201" fill="#dc2626" font-size="14" font-weight="600" text-anchor="middle">Express 5 后端</text>
+  <text x="100" y="230" fill="#374151" font-size="12">• RESTful API 路由</text>
+  <text x="100" y="250" fill="#374151" font-size="12">• Cloudflare SDK v6</text>
+  <text x="100" y="270" fill="#374151" font-size="12">• AES 凭据加密 (Node crypto)</text>
+  <text x="100" y="290" fill="#374151" font-size="12">• 静态文件服务 (express.static)</text>
+  <text x="100" y="310" fill="#374151" font-size="12">• Winston 日志 + 代理支持</text>
+
+  <!-- Right: Hono Worker -->
+  <rect x="560" y="180" width="320" height="145" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
+  <rect x="560" y="180" width="320" height="32" rx="8" fill="#f0fdf4"/>
+  <rect x="560" y="200" width="320" height="12" fill="#f0fdf4"/>
+  <text x="720" y="201" fill="#16a34a" font-size="14" font-weight="600" text-anchor="middle">Hono 4 后端 (Worker)</text>
+  <text x="580" y="230" fill="#374151" font-size="12">• RESTful API 路由</text>
+  <text x="580" y="250" fill="#374151" font-size="12">• 原生 fetch (直连 CF REST API)</text>
+  <text x="580" y="270" fill="#374151" font-size="12">• AES 凭据加密 (@noble/hashes)</text>
+  <text x="580" y="290" fill="#374151" font-size="12">• Pages Functions handler</text>
+  <text x="580" y="310" fill="#374151" font-size="12">• SSE 流式 + 限流</text>
+
+  <!-- ===== Layer 3: Storage (left + right) ===== -->
+  <!-- Left: SQLite -->
+  <rect x="140" y="345" width="200" height="55" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+  <text x="240" y="368" fill="#9a3412" font-size="13" font-weight="600" text-anchor="middle">SQLite</text>
+  <text x="240" y="386" fill="#6b7280" font-size="11" text-anchor="middle">better-sqlite3</text>
+
+  <!-- Right: D1 + KV -->
+  <rect x="620" y="345" width="200" height="55" rx="8" fill="#f0fdfa" stroke="#ccfbf1" stroke-width="1.5"/>
+  <text x="720" y="368" fill="#0f766e" font-size="13" font-weight="600" text-anchor="middle">Cloudflare D1 + KV</text>
+  <text x="720" y="386" fill="#6b7280" font-size="11" text-anchor="middle">边缘数据库 + 键值存储</text>
+
+  <!-- Backend to Storage arrows -->
+  <line x1="240" y1="325" x2="240" y2="345" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <line x1="720" y1="325" x2="720" y2="345" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- ===== Layer 4: Shared Data ===== -->
+  <rect x="280" y="425" width="400" height="48" rx="8" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5"/>
+  <text x="480" y="448" fill="#7c3aed" font-size="14" font-weight="600" text-anchor="middle">shared/ 共享数据层</text>
+  <text x="480" y="463" fill="#6b7280" font-size="11" text-anchor="middle">model-pricing.json · catalog.schema.json · catalogValidator.ts</text>
+
+  <!-- Shared to both backends arrows -->
+  <line x1="380" y1="425" x2="240" y2="400" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrow-purple)"/>
+  <line x1="580" y1="425" x2="720" y2="400" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrow-purple)"/>
+  <text x="300" y="418" fill="#6b7280" font-size="10" text-anchor="middle">sync-shared.js</text>
+  <text x="660" y="418" fill="#6b7280" font-size="10" text-anchor="middle">sync-shared.js</text>
+
+  <!-- ===== Layer 5: Cloudflare API ===== -->
+  <rect x="320" y="498" width="320" height="42" rx="8" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="480" y="518" fill="#374151" font-size="13" font-weight="600" text-anchor="middle">Cloudflare REST API</text>
+  <text x="480" y="533" fill="#6b7280" font-size="11" text-anchor="middle">DNS · Workers · Pages · AI · R2 · KV · D1 · Tunnel · Rulesets</text>
+
+  <!-- Both backends to CF API -->
+  <line x1="240" y1="400" x2="420" y2="498" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <line x1="720" y1="400" x2="540" y2="498" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- ===== Legend ===== -->
+  <rect x="30" y="555" width="320" height="55" rx="6" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="45" y="573" fill="#111827" font-size="12" font-weight="600">图例</text>
+  <line x1="45" y1="589" x2="75" y2="589" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <text x="82" y="593" fill="#6b7280" font-size="11">Express → CF API (SDK)</text>
+  <line x1="210" y1="589" x2="240" y2="589" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <text x="247" y="593" fill="#6b7280" font-size="11">Hono → CF API (fetch)</text>
+
+</svg>

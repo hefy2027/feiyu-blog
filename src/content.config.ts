@@ -72,7 +72,9 @@ const specCollection: ContentCollection<Record<string, never>> =
 		loader: glob({
 			pattern: "**/*.{md,mdx}",
 			base: "./src/content/spec",
-			exclude: ["lists/**"],
+			// Astro 7 的 GlobOptions 类型未暴露 exclude，但运行时仍支持该选项，
+			// 用于避免与 listsCollection 重复加载 lists/ 下的文件
+			...( { exclude: ["lists/**"] } as Record<string, unknown>),
 		}),
 		schema: z.object({}),
 	});
