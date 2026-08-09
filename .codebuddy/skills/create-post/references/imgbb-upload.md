@@ -10,7 +10,7 @@
 
 ## 归档位置
 
-`archived-images/<YYYY-MM>/`，`<YYYY-MM>` 与本文 `published` 年月一致（如 2026-08 发布归入 `archived-images/2026-08/`）。
+`archived-images/<YYYY-MM>/<DD>-<slug>/`，`<YYYY-MM>` 与本文 `published` 年月一致，`<DD>-<slug>` 与文章文件名前缀一致（如 `2026-08` 发布、slug 为 `my-dev-skill-stack` 的文章归入 `archived-images/2026-08/09-my-dev-skill-stack/`）。
 
 ## 归档命名（kebab-case 英文）
 
