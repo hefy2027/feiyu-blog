@@ -148,7 +148,6 @@ async function main() {
 		"---",
 		`title: ${yamlStr(title)}`,
 		`published: ${date}`,
-		`updated: `,
 		`description: ${yamlStr(description)}`,
 		`image: ${yamlStr(image)}`,
 		`tags: ${yamlArray(tags)}`,
