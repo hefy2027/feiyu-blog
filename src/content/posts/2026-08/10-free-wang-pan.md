@@ -7,7 +7,7 @@ tags:
 category: 网盘
 draft: true
 lang: 'zh-cn'
-slug: workerbuddy-build-site
+slug: free-wang-pan
 ---
 
 # 海外零知识加密网盘调研文档
