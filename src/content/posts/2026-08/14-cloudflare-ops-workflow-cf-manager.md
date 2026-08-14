@@ -5,7 +5,7 @@ description: "官方后台、Wrangler CLI 和自建面板该怎么选？聊聊�
 image: "https://i.ibb.co/xKw9Qt78/cloudflare-ops-workflow-cf-manager-cover.png"
 tags: ["Cloudflare", "CF Manager", "运维", "工作流", "开发者工具"]
 category: "Cloudflare"
-draft: true
+draft: false
 lang: "zh-cn"
 pinned: false
 author: ""
