@@ -22,6 +22,7 @@
 //   --description <desc>  一句话摘要
 //   --image <image>       封面图：""（无）、"api"（随机）或一个 URL
 //   --author <name>       作者名
+//   --pinned              置顶文章（默认：false）
 //   --draft               标记为草稿（默认即为草稿，此参数可省略）
 //   --no-draft            发布而非草稿
 //   --dir <path>          文章基础目录（默认：src/content/posts）
@@ -43,14 +44,14 @@ function slugify(text) {
 	return slug;
 }
 
-// 极简参数解析：支持 `--key value` 与布尔型 `--draft` / `--force`。
+// 极简参数解析：支持 `--key value` 与布尔型 `--draft` / `--force` / `--pinned`。
 function parseArgs(argv) {
 	const args = { positional: [], flags: {} };
 	for (let i = 0; i < argv.length; i++) {
 		const a = argv[i];
 		if (a.startsWith("--")) {
 			const key = a.slice(2);
-			if (key === "draft" || key === "force") {
+			if (key === "draft" || key === "force" || key === "pinned" || key === "no-draft") {
 				args.flags[key] = true;
 				continue;
 			}
@@ -106,6 +107,10 @@ async function main() {
 	//  - 未提供且标题含中文：无法确定语义，要求调用方显式传入 --slug。
 	let slug;
 	if (flags.slug) {
+		if (typeof flags.slug !== "string") {
+			console.error('错误：--slug 必须指定具体的英文 slug 字符串');
+			process.exit(1);
+		}
 		slug = slugify(flags.slug);
 	} else if (!CJK.test(title)) {
 		slug = slugify(title);
@@ -141,6 +146,7 @@ async function main() {
 	// 默认随机封面（image: "api"）；传具体 URL 或 `--image ""` 可覆盖。
 	const image = flags.image !== undefined ? flags.image : "api";
 	const author = flags.author || "";
+	const pinned = Boolean(flags.pinned);
 	// 默认新建文章为草稿（--no-draft 可发布）。
 	const draft = flags["no-draft"] ? false : true;
 
@@ -154,7 +160,7 @@ async function main() {
 		`category: ${yamlStr(category)}`,
 		`draft: ${draft}`,
 		`lang: ${yamlStr(lang)}`,
-		`pinned: false`,
+		`pinned: ${pinned}`,
 		`author: ${yamlStr(author)}`,
 		`sourceLink: ""`,
 		`licenseName: ""`,
@@ -177,9 +183,10 @@ async function main() {
 	await writeFile(file, fm, "utf8");
 
 	const relUrl = rel.replace(/\\/g, "/");
-	console.log(`已创建文章：${rel}`);
-	console.log(`  slug：${slug}`);
-	console.log(`  url： /posts/${relUrl.replace(/\.md$/, "")}`);
+	console.log(`已创建文章：${relUrl}`);
+	console.log(`  文件路径：${file}`);
+	console.log(`  文章 slug：${slug}`);
+	console.log(`  访问 url：/posts/${relUrl.replace(/\.md$/, "")}`);
 	console.log("\n下一步：运行 `pnpm dev` 预览，然后撰写正文内容。");
 }
 

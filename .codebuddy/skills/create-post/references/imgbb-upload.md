@@ -4,8 +4,10 @@
 
 ## 步骤
 
-1. **上传**：用 `use_skill` 工具调用 `ImgBB API`（或 `@command://ImgBB API`）逐一上传，获取可分享直链。
-2. **替换引用**：把正文中的图片引用 `./xxx.png` 等**替换为上传后的 URL**。
+1. **上传**：读取用户技能文件 `~/.agents/skills/imgbb-api/SKILL.md`，按照其指南调用 ImgBB API 逐一上传，获取可分享直链。
+2. **替换引用**：
+   - 把正文中的图片引用 `./xxx.png` 等**替换为上传后的 URL**。
+   - 若文章使用了定制本地封面图（front-matter 中 `image: "./xxx-cover.png"`），**同步替换 `image:` 字段为封面直链 URL**。
 3. **归档（移动）**：将原始图片文件**移动（move，非复制）**到仓库 `archived-images/` 目录。
 
 ## 归档位置

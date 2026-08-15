@@ -1,6 +1,6 @@
 ---
 name: create-post
-description: 在本仓库中新建一篇 Firefly（Astro）博客文章。当用户想新增文章、草稿或博客内容时使用，例如「写一篇关于 X 的文章」「新建 post」「加一篇博客」「create a new post」。脚本会自动处理文件位置、URL slug 以及完整的 front-matter，使文章符合本仓库 `src/content/posts/YYYY-MM/DD-<slug>.md` 的约定。
+description: Use when creating a new Firefly (Astro) blog post, drafting a technical article, or adding a blog post to this repository (e.g. "新建文章", "写一篇关于 X 的博客", "create a new post", "写草稿"). Automatically handles file paths, semantic slugs, front-matter, and subagent-delegated workflows.
 ---
 
 # 新建文章（Firefly 博客）
@@ -9,12 +9,17 @@ description: 在本仓库中新建一篇 Firefly（Astro）博客文章。当用
 
 从零产出一篇成稿博客文章：先生成位置正确、front-matter 完整的 Markdown 骨架，再调研主题、给出大纲供确认、撰写正文，最后做图 / 去 AI 味 / 上传归档。弥补旧脚本 `scripts/new-post.js` 的不足（丢 `YYYY-MM/` 与 `DD-` 前缀、中文逐字拼音、无调研与正文）。
 
+**技能依赖与目录说明**：流程中涉及的辅助能力均为外部 Agent Skill，统一位于用户目录 `~/.agents/skills/<skill-name>/SKILL.md`（Windows 环境为 `%USERPROFILE%/.agents/skills/<skill-name>/SKILL.md`）。主代理或子代理执行时，通过读取对应技能文件直接加载规范。
+
+**上下文隔离原则**：重度检索、深度润色、绘图、长排版生成等**高上下文消耗任务必须指派子代理（Subagent）处理**，子代理就地操作文件或仅向主会话返回精简提炼结论，防止主对话 Context Window 膨胀。
+
 编辑前先读 `references/schema.md` 了解 front-matter 字段。各步骤的详细子流程见对应 reference，**执行到该步再读入**，保持本清单始终在视线内。
 
 ## 何时使用
 
 - 用户要求新建、添加一篇文章 / 草稿 / 博客内容。
 - 用户给主题/标题，希望做成可发布的草稿。
+- 用户要求将文章进行公众号排版或跨平台分发适配。
 
 **不要**用于编辑已有文章、页面或其他非 post 内容类型（spec/dynamic 各自 schema）。
 
@@ -27,29 +32,48 @@ description: 在本仓库中新建一篇 Firefly（Astro）博客文章。当用
 
 ## 工作流
 
-1. **Grilling（明确方向，必须第一步执行）**：动手前**必须先用 `use_skill` 工具加载 `grilling` 技能**（若环境支持也可在对话中以 `@command://grilling` 触发），由其多轮提问确认主题定位、核心观点、目标读者、范围、风格深度，直至方向清晰。**禁止**用本地问题自行替代 grilling；只有当 `grilling` 确实无法加载（环境报错 / 未安装）时，才回退到 `references/clarify-direction.md`。其产出作为后续所有步骤输入。
+1. **Grilling（明确方向，必须第一步执行）**：动手前**必须先读取并加载 `~/.agents/skills/grilling/SKILL.md` 技能**，由其提问确认主题定位、核心观点、目标读者、范围、风格深度，直至方向清晰（若用户已提供详尽大纲或明确诉求，可单轮收敛确认，避免过度打扰）。**禁止**用本地问题自行替代 grilling；只有当该技能确实无法加载（文件不存在 / 报错）时，才回退到 `references/clarify-direction.md`。其产出作为后续所有步骤输入。
 2. **收集输入**：确认最终**标题/主题**（必填）。其余字段不询问、用默认值、由 AI 推断：发布日期=今天；`lang`=zh-cn；草稿=是（发布传 `--no-draft`）；封面=随机（`image:"api"`，指定传 `--image <url>`，无封面 `--image ""`）；标签/分类按内容自行创建或关联；`description` 据正文/大纲生成。
 3. **生成语义 slug**：按文章语义取贴切英文单词，规则：小写、连字符、仅 ascii、精炼可读利于 SEO。例：「用 WorkerBuddy 上线站点」→ `workerbuddy-build-site`；「我的开发技能栈」→ `my-dev-skill-stack`；「开始写博客」→ `start-blogging`。
 4. **运行脚本建骨架**：`--slug` 传英文 slug，并自行推断标签/分类传入。（**详见 `references/script-usage.md`**）
-5. **调研主题**：用联网/检索工具（WebSearch/WebFetch、浏览器 MCP、或其它外部信息工具）获取权威来源与最新数据；项目细节用代码库检索（Task 子代理、`search_content`、`read_file`）；必要时 RAG。记录来源链接，避免编造。调研后可微调标签/分类。
-6. **给大纲并请确认**：基于调研拟定结构（引言、核心章节、小结/行动建议），中文列出，**暂停等用户确认/修改**。确认前不写正文。
-7. **撰写正文**：确认后替换占位 `> 在这里开始撰写正文……` 为完整正文，据实引用来源，补全 `description`。（**配图见 `references/image-guide.md`**）
+5. **调研主题（使用子代理，隔离检索上下文）**：
+   - 派发 **调研子代理（Subagent）** 执行搜索与资料检索（利用 WebSearch/WebFetch、浏览器 MCP 或代码库探索）。
+   - **子代理输入**：文章主题、核心观点、范围边界、需验证的事实清单。
+   - **子代理输出契约**：仅返回**提炼后的核心论据、关键技术要点、权威数据与参考来源 URL 清单**（严禁将大段网页全文倒灌回主会话）。
+   - 主代理接收精简结果，微调文章标签/分类。
+6. **给大纲并请确认**：基于精简调研拟定结构（引言、核心章节、小结/行动建议），中文列出，**暂停等用户确认/修改**。确认前不写正文。
+7. **撰写正文与配图**：
+   - 确认大纲后，将占位内容替换为完整正文，据实引用来源，补全 `description`。
+   - **站内内链注入**：扫描检索 `src/content/posts/` 下的已有文章，在正文中自然嵌入 1~2 处 `[[相关文章-slug|显示文本]]` 双向链接，优化站点内链互通与 SEO。
+   - **配图/架构图生成（使用子代理）**：若需插图、架构图或流程图，派发**绘图子代理**。在 Prompt 中明确指派子代理读取对应技能文件 `~/.agents/skills/ai-image-generation/SKILL.md` 或 `~/.agents/skills/fireworks-tech-graph/SKILL.md`，图片生成后直接保存至文章同级目录 `src/content/posts/<YYYY-MM>/`，子代理仅向主会话返回生成路径与 Markdown 引用代码。（**详见 `references/image-guide.md`**）
 8. **校验**：`pnpm dev` 预览 + `pnpm check`；要发布提交前再 `pnpm build`。
 9. **用户审阅与迭代**：交用户审阅，**主动请提意见**；每条反馈逐步修改，每次改完请确认，满意前持续迭代。
-10. **总体复核与去 AI 味（用户确认后）**：用 `use_skill` 工具调用 `wechat-mp-writer` 复核 + `humanizer-zh` 去味（或对话中 `@command://wechat-mp-writer` / `@command://humanizer-zh`）。（**重点修复项见 `references/de-ai-checklist.md`**）
-11. **图片上传与归档**：本地图片上传 ImgBB 得直链，替换正文引用，原图移动归档 `archived-images/`。（**详见 `references/imgbb-upload.md`**）
-12. **公众号版式与作者签名（发布到公众号时执行）**：若文章要发到微信公众号：
-    - 先判断正文末尾**是否需要加「回复 xxx 给你」的互动钩子**（如「回复『工具清单』领取文中提到的资源」）。**注意：并非所有文章都需要**——只有确实提供了可分发资源（资料包、清单、源码、工具等）且与公众号涨粉/互动目标契合时才加；纯观点、随笔、教程类文章通常不加。判断后按需添加，不存在则跳过本项；
-    - 然后在文末追加作者签名：**我是 AI非与，一尾随性游弋的鱼。**；
-    - 最后调用 `@command://gzh-design`（或 `use_skill` 工具）将文章转为公众号排版 HTML，**输出到 `generated/wechat/<slug>.html`**（`<slug>` 与文章 slug 一致），供粘贴到公众号编辑器。该目录已在 `.gitignore` 中忽略，产物不入库。
-    若仅发博客、不运营公众号，可跳过本步。
-13. **收尾**：
+10. **总体复核与去 AI 味（用户确认后，使用子代理）**：
+    - 派发 **审校润色子代理（Subagent）** 处理文本优化，防止多轮润色大文本刷屏。在 Prompt 中明确要求子代理按顺序读取用户技能目录下的 `~/.agents/skills/wechat-mp-writer/SKILL.md`（进行选题/结构总体复核）与 `~/.agents/skills/humanizer-zh/SKILL.md`（去除 AI 腔与套路句式）。
+    - 子代理读取文章文件，直接就地修订单篇 Markdown 文件。（**重点修复项见 `references/de-ai-checklist.md`**）
+    - **子代理输出契约**：仅返回修改摘要（如：优化了哪几处空泛表述、去除了哪些套话、确认图片语法完整），不向主会话输出全文。
+11. **图片上传与归档**：本地图片上传 ImgBB 得直链，替换正文引用（若有本地封面图同步替换 front-matter `image:`），原图移动归档 `archived-images/`。（**详见 `references/imgbb-upload.md`**）
+12. **多渠道分发产物生成（必发环节，派发子代理分工处理）**：每篇文章成稿后，必须同步生成公众号及各大主流平台的发布产物至 `generated/` 目录：
+    - **微信公众号排版（派发排版子代理）**：
+      - 读取 `~/.agents/skills/gzh-design/SKILL.md` 技能；
+      - 正文文末按需添加互动钩子（模式 A）与固定作者签名：`我是 AI非与，一尾随性游弋的鱼。`；
+      - 将文章转为排版 HTML 写入 `generated/wechat/<slug>.html`，并按 `gzh-design` 规范生成带一键复制按钮的 `generated/wechat/<slug>_预览.html`；
+    - **外部多平台草稿适配（可单派发或并行派发适配子代理）**：
+      - 遵循 `references/platforms/common-rules.md` 通用规范；
+      - 指派子代理**精准读取各自目标平台专属规则**进行独立改写与自检：
+        - **CSDN**：读取 `references/platforms/csdn.md` → 写入 `generated/csdn/<slug>.md`（技术实战教程体）
+        - **小红书**：读取 `references/platforms/xiaohongshu.md` → 写入 `generated/xiaohongshu/<slug>.md`（<=20字标题 + 300~600字种草体 + 文末 `#话题`）
+        - **知乎**：读取 `references/platforms/zhihu.md` → 写入 `generated/zhihu/<slug>.md`（客观深度问答体）
+        - **今日头条**：读取 `references/platforms/toutiao.md` → 写入 `generated/toutiao/<slug>.md`（高信息增量资讯）
+        - **百家号**：读取 `references/platforms/baijiahao.md` → 写入 `generated/baijiahao/<slug>.md`（搜索优化干货）
+    - **子代理输出契约**：仅向主会话返回生成成功的平台文件清单与自检合规状态，严禁倒灌大段 HTML/Markdown 文本。
+13. **收尾与发布**：
     - **放开草稿**：**仅当用户明确说「可以提交」时**，才把 `draft: true` 改为 `draft: false`（或移除该字段），使文章对外可见。用户未确认前，始终保留 `draft: true`。
     - **发布前复校验**：放开草稿后、`pnpm build` 前，再跑 `pnpm check`/`pnpm build` 确认无 broken link（尤其图片引用已替换为 ImgBB URL）。
     - **提交内容选择**：`git add` 时**只提交文档与已归档图片**——
         - ✅ 文章 Markdown（`src/content/posts/<YYYY-MM>/<DD>-<slug>.md`）；
         - ✅ 已归档的图片（`archived-images/<YYYY-MM>/` 下本文相关的图片文件）；
-        - ❌ **不提交**第 12 步生成的公众号排版 HTML 产物（属一次性发布物，不入仓库）。
+        - ❌ **不提交** `generated/` 目录下的公众号排版 HTML 或各平台适配草稿（属一次性发布物，已被 `.gitignore` 忽略，不入仓库）。
     - 提交/部署后确认站点正常。
 
 ## 注意事项
@@ -57,38 +81,3 @@ description: 在本仓库中新建一篇 Firefly（Astro）博客文章。当用
 - 草稿文章（`draft: true`）不出现在文章列表与站点地图。
 - 加密文章需在 front-matter 设 `password` 及可选 `passwordHint`。
 - 各 reference 仅在对应步骤执行时读入，保持本 `SKILL.md` 清单始终在视线内。
-
-## 跨平台发布（CSDN 等）防「广告-营销推广」
-
-本仓库文章常被同步 / 搬运到 CSDN。CSDN 审核对「广告-营销推广」的判定**不看语气，看结构**：只要文章像在把读者往一堆第三方公司站点导，就命中。以下经验总结自 `free-ai-ide-and-model-api-guide` 一文为过 CSDN 审核所做的多版迭代（清单版 → 去引流 → 第一人称 → 技术教程版，最终通过），发布到 CSDN 前务必过一遍。
-
-### CSDN 官方认定核心（节选自《社区内容创作规范》）
-
-- 恶意营销 = **以营利 / 获益 / 引流为目的**，**附带 CSDN 未接入的第三方平台联系方式、售卖链接**，或诱导私信转线下。
-- 软广③「公司产品引流」：非商务合作用户，文章有技术内容但最终以公司产品引流为目的。
-- 营销链接：带有明显营销意图的第三方网址。
-- 硬广 / 引流：二维码、图片水印带公众号或个人信息。
-
-### 触发点（踩过的坑）
-
-1. **裸第三方注册 / 下载链接**（如 `joycode.jd.com`、`catpaw.meituan.com`、`opencode.ai/zen`、`free-model.com`）→ 命中「营销链接」「公司产品引流」。
-2. **点名多家公司产品 + "去 X 下载 / 注册" + 强调免费好用** → 命中「软广③公司产品引流」。
-3. **图片水印带公众号 / 个人标识** → 即使删了文字链接仍会被拒（真实案例）。
-4. **文末公众号引流尾巴**（"关注公众号回复 XX 领取"）→ 最典型的引流话术。
-
-### 通过方案（技术教程形态，已验证）
-
-把文章从「产品清单 / 推荐」改写成「**技术教程 / 实战记录**」，CSDN 保护「实质性技术内容」：
-
-- [ ] **零裸外链**：删掉所有"到 X.com 下载 / 注册"链接，改成"去各自官网 / 搜一下就有"等泛称；代码里的 API 端点 host 也尽量泛化（或保留但确保无注册引流意图）。
-- [ ] **产品当例子而非清单**：工具名可保留，但定位为"搭建过程中用到的"，不再罗列"你应该去用的 N 个产品"；能泛化的就泛化（如大厂 IDE 写成"国内几个大厂出的编码 IDE"）。
-- [ ] **加实质技术内容**：配置片段（`settings.json` / `.env`）、调用示例、踩坑记录——证明是教程不是软文。
-- [ ] **加对冲表述**：免费额度有时效、型号会过期、"免费"二字不全信、别绑死生产——避免纯夸显得推广。
-- [ ] **删公众号引流尾巴**。
-- [ ] **发 CSDN 时**：图片在编辑器内重传 CSDN 图床（换 `csdnimg.cn` 域名），并逐张检查截图**无水印**。注意：若文中图片本身已是**外链形式**（`![]()` 带外部 URL，如 ibb.co 链接），粘贴进 CSDN 编辑器时会**自动转换为 CSDN 图床**，无需手动重传；只有本地文件 / 截图才需要手动上传。
-
-### 判断底线
-
-没有链接 / 联系方式，就满足「恶意营销」的硬条件缺口，按规则字面基本能过；残留风险只是算法对"大量品牌名 + 免费"的意图推断。若仍被拒，进一步泛化第三节具名平台（只留 1 个带配置的例子，其余写成通用模式）。
-
-> 注意：自家博客（feiyu-blog）无上述限制，完整清单版 / 带公众号签名版在本站发完全合规；本小节仅针对 CSDN 等外部平台的审核规避。各平台（百家号 / 小红书 / 知乎 / 公众号 / 今日头条）的完整规则、审核红线与适配要点、以及「本文 free-AI 工具类」的逐平台改写示例，见 `references/platform-publishing-rules.md`——**跨平台发布前读入该文件**，按目标平台对号改写。

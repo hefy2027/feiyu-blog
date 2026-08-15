@@ -13,7 +13,7 @@
 |----------------|---------------------|------|----------|------|
 | `title`        | string              | 是   | —        | 文章标题（可为任意语言）。 |
 | `published`    | 日期（`YYYY-MM-DD`）| 是   | —        | 同时决定文件路径中的 `YYYY-MM/DD-`。 |
-| `updated`      | 日期                | 否   | null     | 最后更新日期。 |
+| `updated`      | 日期（`YYYY-MM-DD`）| 否   | 省略     | 最后更新日期。新建文章时省略该字段；有实际更新时才填入日期。 |
 | `description`  | string              | 否   | `""`     | 摘要 / meta 描述。 |
 | `image`        | string              | 否   | `""`     | `""` = 无封面；`"api"` = 随机封面；其余为图片 URL。 |
 | `tags`         | string[]            | 否   | `[]`     | 通过 CLI 传入时用逗号分隔。 |
@@ -43,7 +43,6 @@
 ---
 title: "WorkerBuddy 搭建站点"
 published: 2026-08-10
-updated:
 description: "用 WorkerBuddy 快速上线个人站点"
 image: "api"
 tags: [工具, 部署]

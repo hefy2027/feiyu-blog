@@ -25,6 +25,7 @@ node .codebuddy/skills/create-post/scripts/create-post.mjs "用 WorkerBuddy 上�
 - `--description <desc>`：一句话摘要。
 - `--image <image>`：封面图——`""`（无）、`"api"`（随机，默认）、或一个 URL。
 - `--author <name>`：作者名。
+- `--pinned`：置顶文章（默认不置顶）。
 - `--no-draft`：发布而非草稿（默认即为草稿）。
 - `--dir <path>`：文章基础目录（默认 `src/content/posts`）。
 - `--force`：目标文件已存在则覆盖。
