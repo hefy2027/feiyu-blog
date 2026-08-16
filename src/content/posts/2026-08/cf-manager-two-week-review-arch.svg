@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#e5e7eb"/>
+  <text x="600" y="320" font-family="-apple-system, Segoe UI, sans-serif" font-size="34" fill="#6b7280" text-anchor="middle">双架构对比图</text>
+  <text x="600" y="364" font-family="-apple-system, Segoe UI, sans-serif" font-size="26" fill="#9ca3af" text-anchor="middle">Docker / Express + SQLite　↔　Cloudflare / Hono + D1 + KV</text>
+  <text x="600" y="404" font-family="-apple-system, Segoe UI, sans-serif" font-size="24" fill="#9ca3af" text-anchor="middle">（配图占位 · 待补充）</text>
+</svg>

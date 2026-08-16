@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400">
+  <rect width="1200" height="400" fill="#e5e7eb"/>
+  <text x="600" y="180" font-family="-apple-system, Segoe UI, sans-serif" font-size="34" fill="#6b7280" text-anchor="middle">Fork 一键部署流程图</text>
+  <text x="600" y="224" font-family="-apple-system, Segoe UI, sans-serif" font-size="24" fill="#9ca3af" text-anchor="middle">Fork 仓库 → Settings/Environments 填密钥 → Actions/Run workflow → 上线 Cloudflare Pages</text>
+  <text x="600" y="264" font-family="-apple-system, Segoe UI, sans-serif" font-size="24" fill="#9ca3af" text-anchor="middle">（配图占位 · 待补充）</text>
+</svg>
