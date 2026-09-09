@@ -1,12 +1,31 @@
 // 配置索引文件 - 统一导出所有配置
 // 这样组件可以一次性导入多个相关配置，减少重复的导入语句
 
+import type { NavbarMode } from "../types/siteConfig";
+import { siteConfig } from "./siteConfig"; // 站点基础配置（用于派生 navbarMode）
+
+/** 解析导航栏模式：navbarMode 优先，否则按旧 stickyNavbar 兼容映射（true→fixed，false→static） */
+export function resolveNavbarMode(navbar: {
+	navbarMode?: NavbarMode;
+	stickyNavbar?: boolean;
+}): NavbarMode {
+	if (navbar.navbarMode) return navbar.navbarMode;
+	return navbar.stickyNavbar === false ? "static" : "fixed";
+}
+
+/** 当前导航栏模式（已按 navbarMode / 旧 stickyNavbar 解析），供各消费方统一读取 */
+export const navbarMode: NavbarMode = resolveNavbarMode(siteConfig.navbar);
+
 // 类型导出
 export type {
 	AdConfig,
 	AnalyticsConfig,
 	AnnouncementConfig,
 	BackgroundWallpaperConfig,
+	BooknavFaviconConfig,
+	BooknavGroup,
+	BooknavItem,
+	BooknavPageConfig,
 	CommentConfig,
 	CoverImageConfig,
 	DisplaySettingsConfig,
@@ -41,6 +60,7 @@ export { analyticsConfig } from "./analyticsConfig"; // 统计分析配置
 export { announcementConfig } from "./announcementConfig"; // 公告配置
 // 样式配置
 export { backgroundWallpaper } from "./backgroundWallpaper"; // 背景壁纸配置
+export { booknavConfig, booknavPageConfig } from "./booknavConfig"; // 书签导航配置
 // 功能配置
 export { commentConfig } from "./commentConfig"; // 评论系统配置
 export { coverImageConfig } from "./coverImageConfig"; // 封面图配置
